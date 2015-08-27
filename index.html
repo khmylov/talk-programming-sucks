@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Bright theme for Shower
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=680, user-scalable=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="shower/styles/screen.css" type="text/css">
+    </head>
+    <body class="list">
+        <!--
+        Debug class on <body> enables
+        cyan grid on slides
+    -->
+        <header class="caption">
+            <h1>
+                Programming sucks
+            </h1>
+        </header>
+
+        <section class="slide cover center">
+            <div>
+                <h1>
+                    Programming sucks
+                </h1>
+                <p>
+                    life >>= λx.nothing
+                </p>
+            </div>
+        </section>
+
+        <section class="slide cover center" >
+            <h1>Что-то не так</h1>
+        </section>
+
+        <section class="slide cover h">
+            <img src="pictures/grumpy01-text.jpg"/>
+        </section>
+
+        <section class="slide cover center">
+            <div>
+                <h2>История #1</h2>
+                <h2 class="text-huge">λ</h2>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Сумма элементов матрицы *</h2>
+                <pre><code>
+public static void example01(List&lt;List&lt;Integer&gt;&gt; xs) {
+    int sum = xs
+        .stream()
+        .flatMap(ys -&gt; ys.stream())
+        .filter(x -&gt; x &gt; 0)
+        .reduce(0, (x, y) -&gt; (x + y));
+
+    System.out.println(sum);
+}
+                </code></pre>
+                <p class="text-small"><em>* Теперь со стрелочками</em></p>
+            </div>
+        </section>
+
+         <section class="slide">
+            <div>
+                <h2>Как хотелось бы</h2>
+                <pre><code>
+public static void example01(List&lt;List&lt;Integer&gt;&gt; xs) {
+    int sum = xs
+        .stream()
+
+        // [int] -&gt; [int]
+        .flatMap(ys -&gt; ys.stream())
+
+        // int -&gt; bool
+        .filter(x -&gt; x &gt; 0)
+
+        // int -&gt; (int -&gt; int -&gt; int) -&gt; int
+        .reduce(0, (x, y) -&gt; (x + y));
+
+    System.out.println(sum);
+}
+                </code></pre>
+            </div>
+        </section>
+
+         <section class="slide">
+            <div>
+                <h2>Как получилось</h2>
+                <pre><code>
+public static void example01a(List&lt;List&lt;Integer&gt;&gt; xs) {
+    int sum = xs
+        .stream()
+
+        // Function&lt;List&lt;Integer&gt;, Stream&lt;Integer&gt;&gt;
+        .flatMap(ys -&gt; ys.stream())
+
+        // Predicate&lt;Integer&gt;
+        .filter(x -&gt; x &gt; 0)
+
+        // Integer, BinaryOperator&lt;Integer&gt;
+        .reduce(0, (x, y) -&gt; (x + y));
+
+    System.out.println(sum);
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Угадай тип</h2>
+                <table>
+                    <tr>
+                        <th>Реальный мир</th>
+                        <th>Java</th>
+                    </tr>
+                    <tr>
+                        <td class="next">T -&gt; ()</td>
+                        <td class="next">Consumer&lt;T&gt;, DoubleConsumer, IntConsumer, &hellip;</td>
+                    </tr>
+                    <tr>
+                        <td class="next">T1 -&gt; T2 -&gt; ()</td>
+                        <td class="next">BiConsumer&lt;T1, T2&gt;</td>
+                    </tr>
+                    <tr>
+                        <td class="next">T1 -&gt; T2 -&gt; T3 -&gt; ()</td>
+                        <td class="next">"You can't do that"</td>
+                    </tr>
+                    <tr>
+                        <td class="next">() -&gt; T</td>
+                        <td class="next">Supplier&lt;T&gt;</td>
+                    </tr>
+                    <tr>
+                        <td class="next">T -&gt; R</td>
+                        <td class="next">Function&lt;T, R&gt;, ToDoubleFunction, &hellip;</td>
+                    </tr>
+                    <tr>
+                        <td class="next">U -&gt; T -&gt; U (fold)</td>
+                        <td class="next">BiFunction&lt;U, T, U&gt;</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+       
+        <section class="slide center">
+            <div class="text-large">
+                <code>PetyaAction&lt;T1, T2, T3&gt;</code><br>
+                <code>!=</code><br>
+                <code>VasyaAction&lt;T1, T2, T3&gt;</code>
+            </div>
+        </section>
+
+        <section class="slide center">
+            <div>
+                <h2>Ура! Можно писать адаптеры!</h2>
+                <div class="next">
+                    <h2>
+                        <code>foo((a, b, c) -> bar(a,b,c))</code>
+                    </h2>
+                    <p class="text-small"><em>*Энтерпрайзненько</em></p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- <section class="slide cover center">
+            <div>
+                <h2>YAGNI? DIY?</h2>
+                <p>Common sense?</p>
+            </div>
+        </section> -->
+
+        
+
+        <section class="slide center">
+            <h2>Мы не учимся на чужих ошибках</h2>
+        </section>
+
+        <section class="slide cover center">
+            <div>
+                <h2>История #2</h2>
+                <h2>await</h2>
+            </div>
+        </section>
+
+        <section class="slide cover w">
+            <img src="pictures/doge01.jpg"/>
+            <span style="position: absolute; left: 129px; top: 160px; color: cyan; font-size: 60px">WOW</span>
+            <span style="position: absolute; right: 103px; top: 100px; color: magenta; font-size: 60px">MUCH AWAIT</span>
+            <span style="position: absolute; left: 301px; bottom: 40px; color: lime; font-size: 60px">VERY ASYNC</span>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>The essense of await</h2>
+                <pre class="next"><code>
+public async Task&lt;Настроение&gt; ТвояЖизнь()
+{
+    var зарплата = await ПолучитьЗарплату();
+    var состояние = await Напиться(зарплата);
+
+    var себе = this;
+    return НастроенияФабрика.Разочарование(
+        в: себе,
+        насколько: состояние);
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>The essense of await</h2>
+                <pre><code>
+public Task&lt;Настроение&gt; ТвояЖизнь()
+{
+    return ПолучитьЗарплату()
+
+        .ContinueWith(зарплата =&gt; 
+            Напиться(зарплата.Result)).Unwrap()
+
+        .ContinueWith(состояние =&gt; 
+            НастроенияФабрика.Разочарование(
+                this, состояние.Result));
+}
+                </code></pre>
+                <p class="text-small">* На самом деле всё не так</p>
+            </div>
+        </section>
+
+       <!--  <section class="slide cover">
+            <div>
+                <h2  >async void</h2>
+                <img src="pictures/dogs02.jpg" style="position:static" >
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <pre><code>
+public void Initialize()
+{
+    someButton.Click += OnButtonClick;
+}
+
+// Почти ок
+private async void OnButtonClick(object sender, EventArgs e)
+{
+    var photos = await LoadYourPrivatePhotos();
+    SendToYourFriends(photos);
+}
+
+// Технически возможно, но очень не рекомендуется
+private async void SendToYourFriends(IList&lt;Photo&gt; photos)
+{
+    await new WebClient().UploadDataTaskAsync(...)
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Пусть страдает компилятор</h2>
+                <pre><code>
+public void Initialize()
+{
+    someButton.Click += <b>async</b> OnButtonClick;
+}
+
+private async <b>Task</b> OnButtonClick(object sender, EventArgs e)
+{
+    ...
+}
+</code></pre>
+            </div>
+        </section>
+ -->
+        <section class="slide center">
+            <div>
+                <h2>
+                    Языковые конструкции <br><br>для <b>асинхронных операций</b>
+                </h2>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Что произойдёт?</h2>
+                <pre><code>
+private void Test()
+{
+    var task = GetTextAsync();
+    var text = task.Result;
+
+    MessageBox.Show(text);
+}
+
+private async Task&lt;string&gt; GetTextAsync()
+{
+    await Task.Delay(500);
+    return &quot;Hello&quot;;
+}
+            </code></pre></div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Deadlock</h2>
+                <pre><code>
+private void Test()
+{
+    var task = GetTextAsync();
+    var text = <b>task.Result</b>; // block until completed
+
+    MessageBox.Show(text);
+}
+
+private async Task&lt;string&gt; GetTextAsync()
+{
+    await Task.Delay(500);
+    <b>return</b> &quot;Hello&quot;; // on blocked thread
+}
+            </code></pre></div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Волшебный флажок</h2>
+                <pre><code>
+private void Test()
+{
+    var task = GetTextAsync();
+    var text = task.Result; // block until completed
+
+    MessageBox.Show(text);
+}
+
+private async Task&lt;string&gt; GetTextAsync()
+{
+    await Task.Delay(500)<b>.ConfigureAwait(false)</b>;
+    return &quot;Hello&quot;;
+}
+            </code></pre></div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Типичный синтетический пример</h2>
+                <pre><code class="code-small">
+private static async Task HandleItems(int count)
+{
+    var items = new List&lt;int&gt;();
+    for (int i = 0; i &lt; count; i++)
+    {
+        items.Add(await GetNextRandomValue());
+    }
+}
+
+private static async Task&lt;int&gt; GetNextRandomValue()
+{
+    await Task.Delay(30);
+    return 4;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Cancellation?</h2>
+                <pre><code class="code-small">
+private static async Task HandleItems(int count, <b>CancellationToken ct</b>)
+{
+    var items = new List&lt;int&gt;();
+    for (int i = 0; i &lt; count; i++)
+    {
+        <b>if (ct.IsCancellationRequested)
+        {
+            break;
+        }</b>
+
+        items.Add(await GetNextRandomValue(<b>ct</b>));
+    }
+}
+
+private static async Task&lt;int&gt; GetNextRandomValue(<b>CancellationToken ct</b>)
+{
+    await Task.Delay(30, <b>ct</b>);
+    return 4;
+}
+</code></pre>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div>
+                <h2>Пусть страдает компилятор</h2>
+                <pre><code>
+let getNextRandomValue() = async {
+    <b>do!</b> Async.Sleep 30
+    return 4
+}
+
+let comp = async {
+    let items = List&lt;int&gt;()
+    for i in 0..10 do 
+        <b>let!</b> item = getNextRandomValue()
+        items.Add item
+}
+                </code></pre>
+            </div>
+        </section>
+
+      <!--   <section class="slide">
+            <div>
+                <h2>Простая асинхронность</h2>
+                <p>
+                    Для полноценного использования async/await надо знать и понимать
+                    <ul>
+                        <li class="next">Compiler-generated state machines</li>
+                        <li class="next">Synchronization context</li>
+                        <li class="next">Schedulers/dispatchers, STA/MTA</li>
+                        <li class="next">Error handling</li>
+                    </ul>
+                </p>
+            </div>
+        </section> -->
+
+
+
+        <section class="slide center">
+            <h2>Неправильное использование<br><br>должно быть сложным</h2>
+        </section>
+
+
+
+        <section class="slide cover center">
+            <div>
+                <h2>История #3</h2>
+                <h2 class="text-large">M for monad</h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <h2>Monad tutorial fallacy</h2>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>define "monad"</h2>
+                <img src="pictures/meijer.jpg">
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <h2>Моноид в категории эндофункторов</h2>
+        </section>
+
+
+
+        <!-- <section class="slide center">
+            <h2>ну или</h2>
+        </section> -->
+
+
+
+        <section class="slide">
+            <div>
+                <h2>Monad tutorial fallacy</h2>
+                <ul>
+                    <li >тайп-конструктор</li>
+                    <li class="next">return : a -&gt; M a</li>
+                    <li class="next">bind : M a -&gt; (a -&gt; Mb) -&gt; Mb</li>
+                </ul>
+
+                <ul>
+                    <li class="next">unit : a -&gt; M a</li>
+                    <li class="next">fmap : (a -&gt; b) -&gt; M a -&gt; M b</li>
+                    <li class="next">join : M (M a) -&gt; M a</li>
+                    <li class="next">bind m f = join (fmap f m)
+                </ul>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <img src="pictures/watch01.gif"/>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <img src="pictures/cat-monad.gif">
+                <h2>Котомонада</h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide">
+            <div>
+                <h2>Давайте выучим цикл for</h2>
+                <p class="next">
+                    Цикл for - это императивная реализация функциональной развёртки unfold
+                    <br>
+                    <code>TState -&gt; (TState -&gt; Option[T * TState]) -&gt; List[T]</code>
+                </p>
+                <p class="next"><code>for (i; canIterate(i); i -&gt; j) { value(i) }</code></p>
+            </div>
+        </section>
+
+
+
+        <section class="slide">
+            <div>
+                <h2>Как нарисовать несколько линий?</h2>
+                <pre><code class="code-small">
+подними_перо;
+в_точку(1, 1);
+опусти_перо;
+в_точку(1, 10);
+                </code></pre>
+
+               <pre><code class="next code-small">
+подними_перо;
+в_точку(11, 1);
+опусти_перо;
+в_точку(11, 10);
+
+подними_перо;
+в_точку(21, 1);
+опусти_перо;
+в_точку(21, 10);
+                </code></pre>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>Почему бы не делать то же самое с монадами?</h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2 class="text-huge"><code>f ∘ g</code></h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>Почему страдает обучение?</h2>
+                <img src="pictures/lisp_cycles.png">
+            </div>
+        </section>
+
+
+
+        <section class="slide cover center">
+            <div>
+                <h2>История #4</h2>
+                <h2 class="text-large">Всё есть категория</h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide">
+            <div>
+                <h2>Co-/contra-variance</h2>
+                <pre><code>
+public class Person {
+    public string Name { get; set; }
+}
+
+public class Developer : Person {
+    public string FavoriteTextEditor { get; set; }
+}
+                </code></pre>
+            </div>
+        </section>
+
+
+
+        <section class="slide">
+            <div>
+                <h2>Co-/contra-variance</h2>
+                <pre><code class="code-small">
+private void Test() {
+    var developers = new[] { new Developer(), new Developer() };
+    PrintPersons(developers); // IEnumerable&lt;Developer&gt; : IEnumerable&lt;Person&gt;
+
+    Action&lt;Person&gt; personAction = p =&gt; Console.WriteLine(p.Name);
+    HandleDevelopers(personAction); // Action&lt;Person&gt; : Action&lt;Developer&gt;
+}
+
+// IEnumerable&lt;out T&gt;
+private void PrintPersons(IEnumerable&lt;Person&gt; persons) {
+    foreach (var person in persons) {
+        Console.WriteLine(person.Name);
+    }
+}
+
+// Action&lt;in T&gt;
+private void HandleDevelopers(Action&lt;Developer&gt; action) {
+    action(new Developer());
+    action(new Developer());
+}
+                </code></pre>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>Категория *</h2>
+                <img src="pictures/category01.png">
+                <p class="text-small">* Почти</p>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>Функтор</h2>
+                <img src="pictures/category02.png">
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>Категория типов</h2>
+                <img src="pictures/category03.png">
+            </div>
+        </section>
+
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>IEnumerable&lt;&gt; - это функтор</h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>И Action&lt;&gt; тоже</h2>
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div>
+                <h2>Вариантность ~ направление стрелок</h2>
+                <img src="pictures/category03.png">
+            </div>
+        </section>
+
+
+
+        <section class="slide center">
+            <div><h2>Теория категорий - это #безысходность</h2></div>
+        </section>
+
+
+        <section class="slide cover h">
+            <span class="text-large" style="padding: 0px 24px; background-color: rgba(0,0,0,0.3); position:absolute; bottom: 30px; left: 60px">Can't use (+) as a function</span>
+            <img src="pictures/british01.jpg">
+        </section>
+
+
+
+        <section class="slide cover w">
+            <span class="text-large" style="padding: 0px 24px; background-color: rgba(0,0,0,0.3); position:absolute; top: 30px; left: 60px">Can't define Functor&lt;M&lt;_&gt;&gt;</span>
+            <img src="pictures/british02.jpg">
+        </section>
+
+
+
+        <section class="slide center">
+            <div><h2>Не учите теорию категорий!</h2></div>
+        </section>
+
+
+
+         <section class="slide cover w">
+            <span class="text-large" style="padding: 0px 24px; position:absolute; top: 30px; left: 60px">Q&amp;A</span>
+            <img src="pictures/dogs01.jpg">
+        </section>
+
+        <!--
+        To hide progress bar from entire presentation
+        just remove “progress” element.
+    -->
+        <div class="progress"></div><script src="shower/shower.min.js" type="text/javascript">
+</script><!-- Copyright © 2014 Yours Truly, Famous Inc. -->
+    </body>
+</html>
